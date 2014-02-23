@@ -1,12 +1,12 @@
 <?
-include('../machine/fonctions.php');
+include('../machine/_fonctions.php');
 
 function wordToPos($word,$taille,$ordre) {
 	$word = strtolower($word);
 	for($i=0; $i < strlen($word) ;$i++){
 		
 		$sql[0] = "SELECT * FROM  `possibleTag` WHERE  `tag` LIKE  '".$word[$i]."' ORDER BY  `possibleTag`.`nb` DESC LIMIT 0 , 1 ";
-		$sql[1] = "SELECT * FROM  `possibleTag` WHERE  `tag` LIKE  '".$word[$i]."' ORDER BY  `possibleTag`.`nb` DESC, rand() LIMIT 0 , 1 ";
+		$sql[1] = "SELECT * FROM  `possibleTag` WHERE  `tag` LIKE  '".$word[$i]."' ORDER BY RAND() LIMIT 0 , 1 ";
 		$result = mysql_fetch_array(mysql_query($sql[$ordre]));
 		$lan = $result['lan'];
 		$idDec = 1632;
@@ -25,7 +25,7 @@ if(isset($_POST['word']))$word = $_POST['word'];
 if(isset($_POST['taille']))$taille = $_POST['taille'];
 if(isset($_POST['tailleSml']))$tailleSml= $_POST['tailleSml'];
 echo "<p>".wordToPos($word,$taille,$ordre)."</p>";
-
+echo "<p>".wordToPos($word,$taille,0)."</p>";
 function allLetterPos($letter){
 	$sql = "SELECT * FROM  `possibleTag` WHERE  `tag` LIKE  '".$letter."' ORDER BY  `possibleTag`.`nb` DESC";
 	

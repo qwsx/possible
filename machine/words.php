@@ -1,6 +1,6 @@
 <?
 header('Content-type: text/html; charset=UTF-8'); 
-include('fonctions.php');
+include('_fonctions.php');
 $tag = strtolower($_GET['mot']);
 
 $possibleTag = possibleTag($tag);
@@ -9,54 +9,66 @@ $autour = motAutours($tag);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="<? echo cleanTitre($autour[$lan])?>">
-<meta http-equiv="content-language" content="<? echo $lan; ?>">
-<link rel="stylesheet" type="text/css" href="layout.css">
-<link rel="alternate" type="application/rss+xml" title="Flux" href="rss.xml" />
-<link rel="shortcut icon" href="f99b-4.png" type="image/x-icon" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="<? echo cleanTitre($autour[$lan])?>">
+	<meta http-equiv="content-language" content="<? echo $lan; ?>">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 
-<title><? echo ucwords($tag).' | '.trans($lan,111).' | '.cleanTitre($autour[$lan])?> </title>
+		<link rel="stylesheet" type="text/css" href="css/ui-custom-theme/jquery-ui-1.8.18.custom.css">
+		<script type="text/javascript" src="machine/_lib/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="machine/_lib/jquery-ui-1.8.18.custom.min.js"></script>
+		<?php include('_lib/search-autocomplete.php'); ?>
+		
+	<link rel="alternate" type="application/rss+xml" title="Flux" href="rss.xml" />
+	<link rel="shortcut icon" href="f99b-4.png" type="image/x-icon" />
+
+	<title><? echo ucwords($tag).' | '.trans($lan,111).' | '.cleanTitre($autour[$lan])?> </title>
 </head>
-<body>
-<div id="posId">
-  <h1 class="txt"><? echo $tag?> <sup><? echo $possibleTag['lan']?></sup></h1>
-</div>
-<div id="cont">
-  <div class="proches" >
-    <h2>Possibles</h2>
-    <p class="coloneL"><? echo $possibleTag['img']?></p>
-  </div>
-  <div  class="proches" >
-    <h2><a href="words.fr" ><? echo trans($lan,226) //voir aussi ?></a></h2>
-    <p class="colone"><? echo $autour[$lan]?></p>
-    <h2><? echo trans($lan,212) // proches ?></h2>
-    <p class="colone"><? echo $possibleTag[$lan]?></p>
-    <h2><? echo trans($lan,227) // Autres langues ?></h2>
-    <p class="colone">
+
+<body id="words">
+<? include('media/pages/langueSw.php'); ?>	
+<div id="page">
+	<section id="posId">
+  		<h1 class="txt"><? echo $tag?> <sup><? echo $possibleTag['lan']?></sup></h1>
+	</section>
+	<div id="cont">
+  		<section class="col" >
+    		<aside>
+    		<h2>Possibles</h2>
+    		<p class="gird"><? echo $possibleTag['img']?></p>
+    		</aside>
+ 		</section>
+ 		<section class="col">
+ 			<aside>
+    			<h2><? echo trans($lan,226) //voir aussi ?></h2>
+    			<p class="list"><? echo $autour[$lan]?></p>
+    		</aside>
+    		<aside>
+    		    <h2><? echo trans($lan,212) // proches ?></h2>
+    			<p class="list"><? echo $possibleTag[$lan]?></p>
+    		</aside>
+    		<aside>
+    		 <h2><? echo trans($lan,227) // Autres langues ?></h2>
+   			<p class="list">
    	<? 
-	if($lan=='fr') echo $possibleTag['en'].$possibleTag['es'].$possibleTag['de'].$autour['en'].$autour['de'].$autour['es'];
-	if($lan=='en') echo $possibleTag['fr'].$possibleTag['es'].$possibleTag['de'].$autour['fr'].$autour['de'].$autour['es'];
-	if($lan=='es') echo $possibleTag['en'].$possibleTag['fr'].$possibleTag['de'].$autour['en'].$autour['de'].$autour['fr'];
-	if($lan=='de') echo $possibleTag['en'].$possibleTag['es'].$possibleTag['fr'].$autour['en'].$autour['fr'].$autour['es'];
+   	if($lan=='fr') echo $possibleTag['en'].$possibleTag['es'].$possibleTag['de'].$autour['en'].$autour['de'].$autour['es'];
+	if($lan=='en') echo $possibleTag['fr'].$possibleTag['es'].$possibleTag['de'].$autour['fr'].$autour['de'].$autour['es'];?>
+    		</p>
+    		</aside>
 
-	?>
-    </p>
-  </div>
-    <div class="proches">
-    <h2><a href="*.<? echo $lan;?>"><? echo trans($lan,223)// Découvertes récentes?></a></h2>
-    <p class="colone"><? echo dernierDecouverte()?></p>
-    <h2><a href="words.<? echo $lan;?>"><? echo trans($lan,219) //Top Mots ?></a></h2>
-    <p class="colone"><? echo meilleursMots()?></p>
-    <?
-	for($is=0;$is<16;$is++){// Formes Aléatoires
-		$chiffre = rand(1,65536);
-		$fAutres .= '<a rel="nofollow" href="'.$chiffre.'.'.$lan.'"><img src="'.mkId(decbin($chiffre)).'-8.png" ></a>';
-	}	
-	echo '<h2>'.trans($lan,213).'</h2><p class="colone">'.$fAutres.'</p>'; ?>
-  </div>
-
-  <? include('../pages/find.php'); ?>
+    	</section>
+  		<section class="col" >
+			<aside><h2><? echo trans($lan,223)// Découvertes récentes?></h2><p class="gird"><? echo dernierDecouverte()?><a class="suite" href="*.<? echo $lan;?>">…</a></p></aside>
+    		<aside>
+    			<h2><? echo trans($lan,219) //Top Mots ?></h2>
+    			<p class="list"><? echo meilleursMots()?></p>
+    		</aside>
+    	</section>
+		<section class="col">
+			<? include('media/pages/find.php'); ?>						
+		</section>
+	</div>
 </div>
+<? include('media/pages/analytics.php'); ?>	
 </body>
 </html>

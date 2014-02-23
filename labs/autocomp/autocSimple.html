@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>	
+<link rel="stylesheet" type="text/css" href="css/custom-theme/jquery-ui-1.8.18.custom.css">
+		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$( "#tags" ).autocomplete({
+					source: function(req, add){
+						$.getJSON("tag_json.php?callback=?", req, function(data) {
+							var suggestions = [];
+							$.each(data, function(i, val){								
+								suggestions.push(val.name);
+							});
+							add(suggestions);
+						});
+					},
+					select: function(event, ui) { 
+						console.log('post');
+					}
+		});
+	});
+	</script>
+
+</head>
+<body>
+	
+<div class="demo">
+
+<div class="ui-widget">
+	<label for="tags">Tags: </label>
+	<input id="tags">
+</div>
+</body>
+</div><!-- End demo -->
+</html>

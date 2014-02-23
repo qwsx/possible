@@ -1,7 +1,7 @@
 <style>
 body {
 background-image:url(
-<? include('../machine/fonctions.php'); 
+<? include('../machine/_fonctions.php'); 
 
 $sql1 = mysql_query("SELECT * FROM `possibleTag`");
 

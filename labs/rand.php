@@ -1,7 +1,7 @@
 <style>
 body {
 background-image:url(
-<? include('../machine/fonctions.php');
+<? include('../machine/_fonctions.php');
 $nb1 = mysql_num_rows(mysql_query("SELECT * FROM `possibleTag`"));
 		$chiffre = rand(1,65536);
 		$taille = (rand(0,10)*10)+1;

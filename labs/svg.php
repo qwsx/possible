@@ -1,5 +1,5 @@
 <?php
-include('../machine/fonctions.php');
+include('../machine/_fonctions.php');
 $arrayUrl = explode("-",$_GET['backVars']);
 $img = trId($arrayUrl[0]);
 

@@ -1,5 +1,5 @@
 <?
-include('../machine/fonctions.php');
+include('../machine/_fonctions.php');
 
 
 function allLetterPos($letter){
