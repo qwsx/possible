@@ -24,3 +24,13 @@ error_log
 *btsync*
 
 *.tmproj
+/sitemap.xml
+
+/medias/images
+
+bdd.php
+
+sitemap.xml
+
+/captcha/example-captcha.php
+/captcha/example-mailhide.php
