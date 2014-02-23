@@ -10,7 +10,6 @@ En 4x4,
 - explorer les images possibles par forme, par voisinage etc.
 - proposer des descriptions aux images 
 - générer le poster rassemblant toutes le possibilités
-
 - générer l'état en cours de la [grammaire visuelle](http://possible.dcfvg.com/labs/liste_svg.php) ( signes + descripteurs )
 - [écrire](http://possible.dcfvg.com/labs/ecrire.php) en utilisant les formes considérés comme de la [typographie](http://possible.dcfvg.com/labs/alpha.php)
 
