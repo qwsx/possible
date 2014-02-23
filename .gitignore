@@ -34,3 +34,7 @@ sitemap.xml
 
 /captcha/example-captcha.php
 /captcha/example-mailhide.php
+
+/machine/_bdd.php
+
+/machine/rcaptcha-key.php
