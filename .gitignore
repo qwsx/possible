@@ -36,5 +36,6 @@ sitemap.xml
 /captcha/example-mailhide.php
 
 /machine/_bdd.php
+*bdd.php
 
 /machine/rcaptcha-key.php
